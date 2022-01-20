@@ -3,13 +3,12 @@ import Alexa, { SkillBuilders } from "ask-sdk-core";
 import morgan from "morgan";
 import { ExpressAdapter } from "ask-sdk-express-adapter";
 import mongoose from "mongoose";
-import { Schema } from "mongoose";
 
 mongoose.connect(
   `mongodb+srv://abdalshakir:mainnahibataunga715715@cluster0.6i9n6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 );
 
-const usageSchema = new Schema({
+const usageSchema = new mongoose.Schema({
   skillName: String,
   clientName: String,
   createdOn: { type: Date, default: Date.now },
@@ -44,11 +43,11 @@ const LaunchRequestHandler = {
     );
   },
   handle(handlerInput) {
-      var newUsage = new Usage({
-          skillName: 'Food ordering skill',
-          clientName: 'Abdal Shakir'
-      }).save();
-      
+    var newUsage = new Usage({
+      skillName: "Food ordering skill",
+      clientName: "Abdal Shakir",
+    }).save();
+
     const speakOutput = "Welcome to my food ordering app";
     const reprompt = "I am your virtual assistant. You can ask for the menu";
 
@@ -79,12 +78,14 @@ const IntroHandler = {
 };
 
 const skillBuilder = SkillBuilders.custom()
-  .addRequestHandlers(LaunchRequestHandler, IntroHandler)
+  .addRequestHandlers(
+      LaunchRequestHandler,
+      IntroHandler)
   .addErrorHandlers(ErrorHandler);
 const skill = skillBuilder.create();
 const adapter = new ExpressAdapter(skill, false, false);
 
-app.post("/api/v1/webhook-alexa", adapter.getRequestHandlers());
+app.post('/api/v1/webhook-alexa', adapter.getRequestHandlers());
 
 app.use(express.json());
 app.get("/profile", (req, res, next) => {
