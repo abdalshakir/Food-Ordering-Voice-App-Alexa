@@ -38,9 +38,7 @@ const ErrorHandler = {
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
-    return (
-      Alexa.getRequestType(handlerInput.requestEnvelope) === "LaunchRequest"
-    );
+    return Alexa.getRequestType(handlerInput.requestEnvelope) === "LaunchRequest";
   },
   handle(handlerInput) {
     var newUsage = new Usage({
@@ -61,18 +59,14 @@ const LaunchRequestHandler = {
 
 const IntroHandler = {
   canHandle(handlerInput) {
-    return (
-      Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" &&
-      Alexa.getIntentName(handlerInput.requestEnvelope) === "Intro"
-    );
+    return Alexa.getRequestType(handlerInput.requestEnvelope) === "IntentRequest" 
+        && Alexa.getIntentName(handlerInput.requestEnvelope) === "Intro";
   },
   handle(handlerInput) {
     const speakOutput = "Hello";
-    const reprompt = "Hello";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
-      .reprompt(reprompt)
       .getResponse();
   },
 };
