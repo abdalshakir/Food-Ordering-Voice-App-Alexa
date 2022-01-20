@@ -41,10 +41,6 @@ const LaunchRequestHandler = {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === "LaunchRequest";
   },
   handle(handlerInput) {
-    var newUsage = new Usage({
-      skillName: "Food ordering skill",
-      clientName: "Abdal Shakir",
-    }).save();
 
     const speakOutput = "Welcome to my food ordering app";
     const reprompt = "I am your virtual assistant. You can ask for the menu";
