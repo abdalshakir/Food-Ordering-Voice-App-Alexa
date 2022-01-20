@@ -17,6 +17,7 @@
     "express": "^4.17.2",
     "mongoose": "^6.1.5",
     "morgan": "^1.10.0",
-    "ngrok": "^4.2.2"
+    "ngrok": "^4.2.2",
+    "ask-sdk-model": "1.37.1"
   }
 }
