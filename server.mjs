@@ -63,7 +63,7 @@ const IntroHandler = {
         && Alexa.getIntentName(handlerInput.requestEnvelope) === "Intro";
   },
   handle(handlerInput) {
-    const speakOutput = "Hello";
+    const speakOutput = "Hello, What is your name?";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
